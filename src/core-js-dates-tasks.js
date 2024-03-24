@@ -70,8 +70,19 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+  const weekDays = {
+    1: MILLISECONDS_IN_DAY * 4,
+    2: MILLISECONDS_IN_DAY * 3,
+    3: MILLISECONDS_IN_DAY * 2,
+    4: MILLISECONDS_IN_DAY * 1,
+    5: MILLISECONDS_IN_DAY * 7,
+    6: MILLISECONDS_IN_DAY * 6,
+    0: MILLISECONDS_IN_DAY * 5,
+  };
+  const day = new Date(date);
+  return new Date(day.valueOf() + weekDays[day.getDay()]);
 }
 
 /**
